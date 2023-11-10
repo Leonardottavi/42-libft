@@ -6,12 +6,13 @@
 /*   By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:39:50 by lottavi           #+#    #+#             */
-/*   Updated: 2023/05/23 11:41:12 by lottavi          ###   ########.fr       */
+/*   Updated: 2023/11/10 10:36:34 by lottavi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdarg.h>
+#include "libft.h"
 
 int	ft_putchar(char c)
 {

@@ -6,7 +6,7 @@
 #    By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 11:56:20 by lottavi           #+#    #+#              #
-#    Updated: 2023/04/14 11:56:21 by lottavi          ###   ########.fr        #
+#    Updated: 2023/11/10 11:45:08 by lottavi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,8 +48,8 @@ SRCS =	ft_isalpha.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
-
-BSRCS =	ft_lstnew.c \
+		ft_printf.c\
+		ft_lstnew.c \
 		ft_lstadd_front.c \
 		ft_lstsize.c \
 		ft_lstlast.c \
@@ -61,15 +61,10 @@ BSRCS =	ft_lstnew.c \
 
 OBJS = $(SRCS:.c=.o)
 
-BOBJS = $(BSRCS:.c=.o)
-
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar -r $(NAME) $(OBJS)
-
-bonus: $(OBJS) $(BOBJS)
-	@ar -r $(NAME) $(OBJS) $(BOBJS)
 
 clean:
 	@rm -f $(OBJS) $(BOBJS)

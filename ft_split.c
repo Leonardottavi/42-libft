@@ -6,112 +6,55 @@
 /*   By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 11:54:36 by lottavi           #+#    #+#             */
-/*   Updated: 2023/04/14 11:54:37 by lottavi          ###   ########.fr       */
+/*   Updated: 2023/11/10 09:51:11 by lottavi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count_words(char const *s, char c)
+static size_t	ft_countword(char const *s, char c)
 {
-	int	i;
-	int	j;
-	int	xbool;
+	size_t	count;
 
-	i = 0;
-	j = 0;
-	xbool = 0;
-	while (s[i] != '\0')
+	if (!*s)
+		return (0);
+	count = 0;
+	while (*s)
 	{
-		if (s[i] == c && xbool == 1)
-		{
-			j++;
-			xbool = 0;
-		}
-		else if (s[i] != c && s[i + 1] == '\0')
-			j++;
-		else if (s[i] != c)
-			xbool = 1;
-		i++;
+		while (*s == c)
+			s++;
+		if (*s)
+			count++;
+		while (*s != c && *s)
+			s++;
 	}
-	return (j);
-}
-
-static const char	*ft_get_ptr_to_str(const char *s, char c, int strnum)
-{
-	int	i;
-	int	j;
-	int	xbool;
-
-	i = 0;
-	j = 0;
-	xbool = 1;
-	while (j < strnum)
-	{
-		if (s[i] == c)
-		{
-			i++;
-			xbool = 1;
-		}
-		else if (s[i] != c && xbool == 1)
-		{
-			j++;
-			xbool = 0;
-		}
-		else
-			i++;
-	}
-	return (s + i);
-}
-
-static void	ft_cpy_str_to_arr(char *dst, const char *src, char c)
-{
-	int	i;
-
-	i = 0;
-	while (src[i] != c && src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-}
-
-static size_t	ft_strpartlen(const char *str, const char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0' && str[i] != c)
-		i++;
-	return (i);
+	return (count);
 }
 
 char	**ft_split(char const *s, char c)
 {
+	char	**lst;
+	size_t	word_len;
 	int		i;
-	char	**retarray;
 
-	if (!s)
-		return (NULL);
-	retarray = (char **)ft_calloc(sizeof(char *), (ft_count_words(s, c) + 1));
-	if (!retarray)
-		return (NULL);
+	lst = (char **)malloc((ft_countword(s, c) + 1) * sizeof(char *));
+	if (!s || !lst)
+		return (0);
 	i = 0;
-	while (i < ft_count_words(s, c))
+	while (*s)
 	{
-		retarray[i] = (char *)ft_calloc(sizeof(char), (ft_strpartlen(
-						ft_get_ptr_to_str(s, c, i + 1), c) + 1));
-		if (!retarray[i])
+		while (*s == c && *s)
+			s++;
+		if (*s)
 		{
-			while (--i >= 0)
-				free(retarray[i]);
-			free(retarray);
-			return (NULL);
+			if (!ft_strchr(s, c))
+				word_len = ft_strlen(s);
+			else
+				word_len = ft_strchr(s, c) - s;
+			lst[i++] = ft_substr(s, 0, word_len);
+			s += word_len;
 		}
-		ft_cpy_str_to_arr(retarray[i], ft_get_ptr_to_str(s, c, i + 1), c);
-		i++;
 	}
-	retarray[i] = (NULL);
-	return (retarray);
+	lst[i] = NULL;
+	return (lst);
 }
