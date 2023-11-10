@@ -6,7 +6,7 @@
 #    By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 11:56:20 by lottavi           #+#    #+#              #
-#    Updated: 2023/11/10 12:41:17 by lottavi          ###   ########.fr        #
+#    Updated: 2023/11/10 12:56:24 by lottavi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS =	ft_isalpha.c \
 		ft_lstclear.c \
 		ft_lstiter.c \
 		ft_lstmap.c \
+		get_next_line.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -67,7 +68,7 @@ $(NAME): $(OBJS)
 	@ar -r $(NAME) $(OBJS)
 	@rm -f $(OBJS)
 
-fclean: 
+fclean:
 	@rm -f $(NAME)
 
 re: fclean all
