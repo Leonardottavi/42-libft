@@ -6,7 +6,7 @@
 #    By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 11:56:20 by lottavi           #+#    #+#              #
-#    Updated: 2023/11/10 12:37:03 by lottavi          ###   ########.fr        #
+#    Updated: 2023/11/10 12:41:17 by lottavi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ $(NAME): $(OBJS)
 	@ar -r $(NAME) $(OBJS)
 	@rm -f $(OBJS)
 
-fclean: clean
+fclean: 
 	@rm -f $(NAME)
 
 re: fclean all
