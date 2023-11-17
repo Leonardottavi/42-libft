@@ -6,13 +6,14 @@
 #    By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 11:56:20 by lottavi           #+#    #+#              #
-#    Updated: 2023/11/10 12:56:24 by lottavi          ###   ########.fr        #
+#    Updated: 2023/11/17 10:04:24 by lottavi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
+OBJS = $(SRCS:.c=.o)
 
 SRCS =	ft_isalpha.c \
 		ft_isdigit.c \
@@ -60,15 +61,18 @@ SRCS =	ft_isalpha.c \
 		ft_lstmap.c \
 		get_next_line.c \
 
-OBJS = $(SRCS:.c=.o)
+.c.o:
+		${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
 
-all: $(NAME)
+$(NAME): ${OBJS}
+		ar rcs ${NAME} ${OBJS}
 
-$(NAME): $(OBJS)
-	@ar -r $(NAME) $(OBJS)
-	@rm -f $(OBJS)
+all:	${NAME}
 
-fclean:
-	@rm -f $(NAME)
+clean:
+	${RM} ${OBJS}
 
-re: fclean all
+fclean:	clean
+		${RM} ${NAME}
+
+re:		fclean all
