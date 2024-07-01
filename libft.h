@@ -6,7 +6,7 @@
 /*   By: lottavi <lottavi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 11:56:15 by lottavi           #+#    #+#             */
-/*   Updated: 2023/11/10 13:00:20 by lottavi          ###   ########.fr       */
+/*   Updated: 2024/07/01 17:35:01 by lottavi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,10 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_printf(char *string, ...);
 char	*get_next_line(int fd);
+int		ft_unsetenv(const char *name);
+int		ft_strcmp(char *s1, char *s2);
+char	*ft_strcat(char *dest, char *src);
+char	*ft_strcpy(char *dest, char *src);
+char	*ft_strtok(char *str, const char *delim);
 
 #endif
